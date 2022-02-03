@@ -1,5 +1,4 @@
-# Assignment4_PokemonTrainer_angular
-
+# (angular) Assignment4 - Pokemon Trainer
 Creating a webpage in angular where you can become a pokemon trainer
 
 ## Description
