@@ -17,9 +17,26 @@ In this project we Build an Pokemon trainer game as a Single Page Application us
 * Clone the folder into your system.
 * Go to the root folder of the cloned project and run 'npm install' from your favorite terminal.
 
-### Executing program
+### Development server
 
-* After running install, simply run 'ng serve' while still in the root folder, to run the SPA.
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+### Code scaffolding
+
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+
+### Build
+
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+
+### Running unit tests
+
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+### Running end-to-end tests
+
+Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+
 
 ## Help
 
