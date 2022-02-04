@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { PokemonCatalogueComponent } from './pokemon-catalogue-page/pokemon-catalogue-page.component';
 import { TrainerPageComponent } from './trainer-page/trainer-page.component';
+import { LogInComponent } from "./log-in-component/log-in.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingPageComponent,
     TrainerPageComponent,
-    PokemonCatalogueComponent
+    PokemonCatalogueComponent,
+    LogInComponent,
   ],
   imports: [
     BrowserModule,
