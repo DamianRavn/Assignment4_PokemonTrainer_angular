@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { HttpClient } from  '@angular/common/http';
 import { Pokemon } from "../models/pokemon.model";
 
-const URL = "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=100"
+const URL = "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=30/results"
 
 @Component({
     selector: 'app-pokemon-catalogue-page',
@@ -17,23 +17,21 @@ export class PokemonCatalogueComponent implements OnInit{
 
     constructor(private http: HttpClient){ 
     }
-
+    
     
     ngOnInit() {
         this.http.get<Pokemon>( URL )    
             .subscribe({
                 next: (response)=>{
-                    console.log("RESPONSE", response);
                     this.pokemon = response;
-                    //console.log(this.pokemon.name)// cant seem to get the names printed on the dom - see the html file also
-                    console.log(this.pokemon)
+                    //console.log("RESPONSE", response);
+                    //console.log(this.pokemon.results)
                 },
                 error: (error) => {
                     console.log(error.message)
                 }
             })
     }
-
 }
 
 // Notes for WIP
