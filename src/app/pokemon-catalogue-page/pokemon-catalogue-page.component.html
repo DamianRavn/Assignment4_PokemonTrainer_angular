@@ -3,7 +3,12 @@
 </ul>
 
 <section id="pokemon" *ngIf="pokemon !== null">
-    <ul>{{pokemon}}</ul> <!--Cant seem to accses the propper values from the json file?..-->
+    <ul *ngFor="let pokemon of pokemon.results">
+        <li>
+            {{pokemon.name}}
+            <button id = "someFunc">Catch {{pokemon.name}} !</button>
+        </li>
+    </ul> <!--Cant seem to accses the propper values from the json file?..-->
     <ul>listed item</ul>
     
     
