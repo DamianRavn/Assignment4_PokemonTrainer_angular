@@ -1,5 +1,7 @@
 import { style } from "@angular/animations";
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
+import { NgForm } from "@angular/forms";
+import { PokemonService } from "../requests/http-requests";
 
 @Component({
     selector: 'app-log-in',
@@ -8,8 +10,10 @@ import { Component, OnInit } from "@angular/core";
 })
 export class LogInComponent
 {
-    fetchUsername(event:Event)
+    //DI
+    constructor(private pokemonService : PokemonService) {}
+    fetchUsername(form:NgForm)
     {
-        console.log(event);
+        this.pokemonService.getTrainer(form.value.username);
     }
 }

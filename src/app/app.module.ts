@@ -8,6 +8,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { PokemonCatalogueComponent } from './pokemon-catalogue-page/pokemon-catalogue-page.component';
 import { TrainerPageComponent } from './trainer-page/trainer-page.component';
 import { LogInComponent } from "./log-in-component/log-in.component";
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { LogInComponent } from "./log-in-component/log-in.component";
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

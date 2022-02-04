@@ -1,5 +1,10 @@
-<form class="flex flex-col">
+<form #createLogInForm="ngForm" class="flex flex-col" (ngSubmit)="fetchUsername(createLogInForm)">
     <label for="trainernameInput">Trainer Name:</label><br />
-    <input type="text" placeholder="your trainer name" required="true" id="usernameInput"/>
-    <button class="rounded-sm to-blue-400 font-bold" (click)="fetchUsername($event)">Catch 'em all!</button>
+    <input type="text"
+    ngModel
+    name="username"
+    placeholder="your trainer name"
+    required
+    id="usernameInput"/>
+    <button type="submit" [disabled]="createLogInForm.form.invalid" class="rounded-sm to-blue-400 font-bold">Catch 'em all!</button>
 </form>
