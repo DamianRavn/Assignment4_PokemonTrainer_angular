@@ -1,10 +1,16 @@
-<form #createLogInForm="ngForm" class="flex flex-col" (ngSubmit)="fetchUsername(createLogInForm)">
-    <label for="trainernameInput">Trainer Name:</label><br />
-    <input type="text"
-    ngModel
-    name="username"
-    placeholder="your trainer name"
-    required
-    id="usernameInput"/>
-    <button type="submit" [disabled]="createLogInForm.form.invalid" class="rounded-sm to-blue-400 font-bold">Catch 'em all!</button>
-</form>
+<div *ngIf="!isLoading(); then formBlock else loadingBlock"></div>
+<ng-template #formBlock>
+    <form #createLogInForm="ngForm" class="flex flex-col" (ngSubmit)="fetchUsername(createLogInForm)">
+        <label for="trainernameInput">Trainer Name:</label><br />
+        <input type="text"
+        ngModel
+        name="username"
+        placeholder="your trainer name"
+        required
+        id="usernameInput"/>
+        <button type="submit" [disabled]="createLogInForm.form.invalid" class="rounded-sm to-blue-400 font-bold">Catch 'em all!</button>
+    </form>
+</ng-template>
+<ng-template #loadingBlock>
+    <div>Is loading...</div>
+</ng-template>
