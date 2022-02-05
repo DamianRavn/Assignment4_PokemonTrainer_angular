@@ -1,7 +1,10 @@
-import { style } from "@angular/animations";
 import { Component } from "@angular/core";
 import { NgForm } from "@angular/forms";
-import { PokemonService } from "../requests/http-requests";
+import { Router } from '@angular/router';
+import { User } from "../models/pokemon.model"
+
+import { HttpRequestService } from "../services/http-requests.service";
+import { UserService } from "../services/user.service";
 
 @Component({
     selector: 'app-log-in',
@@ -11,9 +14,21 @@ import { PokemonService } from "../requests/http-requests";
 export class LogInComponent
 {
     //DI
-    constructor(private pokemonService : PokemonService) {}
+    constructor(private httpRequestService : HttpRequestService, private router : Router, private userService : UserService) {}
+    
     fetchUsername(form:NgForm)
     {
-        this.pokemonService.getTrainer(form.value.username);
+        this.httpRequestService.getTrainer(form.value.username, this.loggedIn);
+    }
+
+    isLoading() : boolean
+    {
+        return this.httpRequestService.loading;
+    }
+    //When the httprequestservice is done logging in, this is called as a callback
+    loggedIn = (user : User)=>
+    {
+        this.userService.user = user;
+        this.router.navigateByUrl('/pokemon');
     }
 }
