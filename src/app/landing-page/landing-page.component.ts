@@ -1,4 +1,3 @@
-import { style } from "@angular/animations";
 import { Component } from "@angular/core";
 
 @Component({
@@ -6,6 +5,6 @@ import { Component } from "@angular/core";
     templateUrl: './landing-page.component.html',
     styleUrls: ['./landing-page.component.css']
 })
-export class LandingPageComponent{
-
+export class LandingPageComponent
+{
 }
