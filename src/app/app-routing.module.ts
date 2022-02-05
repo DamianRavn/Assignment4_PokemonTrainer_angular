@@ -4,6 +4,8 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { TrainerPageComponent } from './trainer-page/trainer-page.component';
 import { PokemonCatalogueComponent } from './pokemon-catalogue-page/pokemon-catalogue-page.component';
 import { NotFoundComponent } from './not-found-page/not-found.component';
+import { UserGuard } from './services/user.guard';
+import { HomeGuard } from './services/home.guard';
 
 const routes: Routes = 
 [
@@ -14,15 +16,18 @@ const routes: Routes =
   },
   { 
     path: 'home',
-    component: LandingPageComponent 
+    component: LandingPageComponent,
+    canActivate: [HomeGuard]
   },
   { 
     path: 'trainer',
-    component: TrainerPageComponent 
+    component: TrainerPageComponent,
+    canActivate: [UserGuard]
   },
   { 
     path: 'pokemon',
-    component: PokemonCatalogueComponent 
+    component: PokemonCatalogueComponent,
+    canActivate: [UserGuard]
   },
   {
     path: '404',

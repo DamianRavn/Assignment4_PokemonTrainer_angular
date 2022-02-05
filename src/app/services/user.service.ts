@@ -32,6 +32,7 @@ export class UserService
   //If user is default, then not logged in
   isLoggedIn() : boolean
   {
-    return this._user === defaultUser;
+    //If username is anything but "", user is logged in
+    return this._user.name != "";
   }
 }
