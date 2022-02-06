@@ -20,7 +20,7 @@ const routes: Routes =
     canActivate: [HomeGuard]
   },
   { 
-    path: 'trainer',
+    path: 'profile',
     component: TrainerPageComponent,
     canActivate: [UserGuard]
   },
