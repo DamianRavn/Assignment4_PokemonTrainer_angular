@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { User } from "../models/pokemon.model"
-import { map } from "rxjs/operators";
+import { map, mergeMap } from "rxjs/operators";
+import { Observable, of } from 'rxjs';
 
 const apiURL =  'https://experis-assignment-api.herokuapp.com'
 const apiKey =  'floppy-vitamin-cloud';
@@ -20,22 +21,34 @@ export class HttpRequestService {
     {
         this._loading = true;
         this.httpClient.get<User[]>(`${apiURL}/trainers?username=${username}`)
-        .pipe(map((response : User[]) => response[0])) //There should only be one user with that username, so we can use [0]. if there are 0 users, it's undefined which is fine
+        .pipe
+        (
+            map((response : User[]) => response[0]), //There should only be one user with that username, so we can use [0]. if there are 0 users, it's undefined which is fine
+            mergeMap
+            (
+                (user : User)=>
+                {
+                    if (!user) 
+                    {
+                        //Register the user on API since it's not there
+                        const newUser =
+                        {
+                            username,
+                            pokemon: []
+                        }
+                        const headers = this.createHeaders();
+                        return this.httpClient.post<User>(`${apiURL}/trainers`, newUser, {headers})
+                    }
+                    return of(user);
+                }
+            )
+        ) 
         .subscribe
         ({
             next: (response : User)=>
             {
-                if (!response) 
-                {
-                    //The user is not in the api, so we register as new user
-                    this.registerTrainer(username, callback);
-                }
-                else
-                {
-                    //The user exists and everything is good
-                    this._loading = false;
-                    callback(response);
-                }
+                this._loading = false;
+                callback(response);
             },
             error: (error : HttpErrorResponse)=>
             {
@@ -53,29 +66,5 @@ export class HttpRequestService {
             'Content-Type': 'application/json'
         });
     }
-    //Register the user on API
-    registerTrainer(username : string, callback : Function) : void
-    {
-        const user = 
-        {
-            username,
-            pokemon: []
-        }
-        const headers = this.createHeaders();
-        this.httpClient.post<User>(`${apiURL}/trainers`, user, {headers})
-        .subscribe
-        ({
-            next: (response : User) =>
-            {
-                this._loading = false;
-                callback(response);
-            },
-            error: (error : HttpErrorResponse)=>
-            {
-                console.log(error);
-            },
-        });
-    }
-    
     
 }

@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
 
-@Component({
+@Component
+({
   selector: 'app-caught-pokemon',
   templateUrl: './caught-pokemon.component.html',
   styleUrls: ['./caught-pokemon.component.css']
 })
-export class CaughtPokemonComponent implements OnInit {
+export class CaughtPokemonComponent
+{
 
-  constructor() { }
+  constructor(private user : UserService) { }
 
-  ngOnInit(): void {
-  }
+  
 
 }

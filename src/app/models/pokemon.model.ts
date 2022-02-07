@@ -13,7 +13,7 @@ export type User =
 {
     id : number;
     name : string;
-    pokemon : string[];
+    pokemon : PokemonData[];
 }
 //Default user is unlogged user
 export const defaultUser : User =
@@ -21,4 +21,10 @@ export const defaultUser : User =
     id: 0,
     name: "",
     pokemon: []
+}
+
+export type PokemonData =
+{
+    name: string,
+    deleted: boolean
 }
