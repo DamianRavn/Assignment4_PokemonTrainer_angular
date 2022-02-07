@@ -1,6 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { HttpClient } from  '@angular/common/http';
 import { Pokemon } from "../models/pokemon.model";
+import { PokemonsService } from "../services/pokemons.service";
 
 let pictureVal = 1 // use string split on 6th '/' at  URL from the json file: https://pokeapi.co/api/v2/pokemon/1/"
 
@@ -14,8 +15,20 @@ const pictureUrl =`https://raw.githubusercontent.com/PokeAPI/sprites/master/spri
 })
 
 
-export class PokemonCatalogueComponent {
-    constructor() {}
+export class PokemonCatalogueComponent implements OnInit {
+
+
+    get pokemons() : Pokemon[]{
+        return this.pokemonService.pokemons;
+    }
+    //DI
+    constructor(private pokemonService: PokemonsService) {}
+
+    ngOnInit(): void {
+        this.pokemonService.findAllPokemons();
+        console.log( this.pokemons[2])
+        
+    }
     
 }
 
