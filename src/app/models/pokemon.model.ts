@@ -12,14 +12,14 @@ export interface PokemonItem {
 export type User =
 {
     id : number;
-    name : string;
+    username : string;
     pokemon : PokemonData[];
 }
 //Default user is unlogged user
 export const defaultUser : User =
 {
     id: 0,
-    name: "",
+    username: "",
     pokemon: []
 }
 

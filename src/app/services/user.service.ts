@@ -33,7 +33,7 @@ export class UserService
   isLoggedIn() : boolean
   {
     //If username is anything but "", user is logged in
-    return this._user.name != "";
+    return this._user.username != "";
   }
   //Returns pokemon that are not deleted
   filteredPokemonList() : PokemonData[]
