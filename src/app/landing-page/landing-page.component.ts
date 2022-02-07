@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { HeaderComponent } from "../header-component/header/header.component";
 
 @Component({
     selector: 'app-landing-page',
@@ -7,4 +8,5 @@ import { Component } from "@angular/core";
 })
 export class LandingPageComponent
 {
+    headerText = "Welcome Trainer";
 }

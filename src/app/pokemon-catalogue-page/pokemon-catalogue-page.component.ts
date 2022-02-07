@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpClient } from  '@angular/common/http';
 import { Pokemon } from "../models/pokemon.model";
+import { HeaderComponent } from "../header-component/header/header.component";
 
 const URL = "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=30/results"
 
@@ -13,6 +14,7 @@ const URL = "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=30/results"
 
 export class PokemonCatalogueComponent implements OnInit{
 
+    headerText = "Pokemon Catalogue";
     public pokemon: Pokemon | null = null;
 
     constructor(private http: HttpClient){ 

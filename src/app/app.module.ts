@@ -10,6 +10,8 @@ import { TrainerPageComponent } from './trainer-page/trainer-page.component';
 import { LogInComponent } from "./log-in-component/log-in.component";
 import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from './navbar-component/navbar.component';
+import { HeaderComponent } from './header-component/header/header.component';
+import { CaughtPokemonComponent } from './caught-pokemon-component/caught-pokemon/caught-pokemon.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { NavbarComponent } from './navbar-component/navbar.component';
     PokemonCatalogueComponent,
     LogInComponent,
     NavbarComponent,
+    HeaderComponent,
+    CaughtPokemonComponent,
   ],
   imports: [
     BrowserModule,
