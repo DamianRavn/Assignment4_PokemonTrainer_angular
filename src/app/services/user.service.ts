@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User, defaultUser } from "../models/pokemon.model"
+import { User, defaultUser, PokemonData } from "../models/pokemon.model"
 
 
 const USER_KEY = "user";
@@ -17,7 +17,7 @@ export class UserService
   {
     return this._user;
   }
-
+  //Set user also sets the sessionstorage
   set user(user : User)
   {
     sessionStorage.setItem(USER_KEY, JSON.stringify(user));
@@ -34,5 +34,23 @@ export class UserService
   {
     //If username is anything but "", user is logged in
     return this._user.name != "";
+  }
+  //Returns pokemon that are not deleted
+  filteredPokemonList() : PokemonData[]
+  {
+    return this._user.pokemon.filter(pokemon => !pokemon.deleted);
+  }
+
+  //Deletes the pokemon from the user by setting a tombstone
+  deletePokemon(pokename : string)
+  {
+    //Set flag by going through all pokemon untill finds the one to delete
+    this._user.pokemon.forEach(pokemon => 
+    {
+        if (pokemon.name === pokename) 
+        {
+          pokemon.deleted = true;
+        }
+    });
   }
 }

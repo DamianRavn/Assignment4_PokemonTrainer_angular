@@ -26,5 +26,6 @@ export const defaultUser : User =
 export type PokemonData =
 {
     name: string,
+    image: string,
     deleted: boolean
 }
