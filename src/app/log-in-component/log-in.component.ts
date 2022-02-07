@@ -3,7 +3,7 @@ import { NgForm } from "@angular/forms";
 import { Router } from '@angular/router';
 import { User } from "../models/pokemon.model"
 
-import { HttpRequestService } from "../services/http-requests.service";
+import { HttpRequestService } from "../services/user-requests.service";
 import { UserService } from "../services/user.service";
 
 @Component({
