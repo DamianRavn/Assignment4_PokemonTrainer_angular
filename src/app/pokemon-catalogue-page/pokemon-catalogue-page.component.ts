@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { HttpClient } from  '@angular/common/http';
 import { Pokemon } from "../models/pokemon.model";
-import { PokemonsService } from "../services/pokemons.service";
+import { PokemonsService } from "../services/pokemon-requests.service";
 import { HeaderComponent } from "../header-component/header/header.component";
 
 let pictureVal = 1 // use string split on 6th '/' at  URL from the json file: https://pokeapi.co/api/v2/pokemon/1/"
