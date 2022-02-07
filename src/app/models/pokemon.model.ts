@@ -1,12 +1,24 @@
-//importing pokemons as array
-export interface Pokemon{
-    results: PokemonItem[];
+// //importing pokemons as array
+// export interface Pokemon{
+//     results: PokemonItem[];
 
+// }
+// //access individual pokemon Items from array 
+// export interface PokemonItem {
+//     name: string;
+//     url: string; // use url extension to provide picture
+// }
+
+
+//importing pokemons as array
+export interface PokemonResponse {
+    results: Pokemon[]  
 }
 //access individual pokemon Items from array 
-export interface PokemonItem {
+export interface Pokemon{
     name: string;
     url: string; // use url extension to provide picture
+
 }
 //all the user/trainer data
 export type User =
