@@ -59,30 +59,3 @@ export class PokemonCatalogueComponent
     }
     
 }
-
-// export class PokemonCatalogueComponent implements OnInit{
-
-//     public pokemon: Pokemon | null = null;
-
-//     constructor(private http: HttpClient){ 
-//     }
-    
-    
-//     ngOnInit() {
-//         this.http.get<Pokemon>( URL )    
-//             .subscribe({
-//                 next: (response)=>{
-//                     this.pokemon = response;
-//                     //console.log("RESPONSE", response);
-//                     console.log(this.pokemon.results)
-//                 },
-//                 error: (error) => {
-//                     console.log(error.message)
-//                 }
-//             })
-//             console.log(pictureUrl)
-//     }
-// }
-
-// Notes for WIP
-// maybe the API fetch should be noved to its own folder as a component? (interface to th api)
