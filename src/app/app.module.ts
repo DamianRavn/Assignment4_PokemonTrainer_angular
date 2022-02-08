@@ -13,6 +13,7 @@ import { NavbarComponent } from './navbar-component/navbar.component';
 import { HeaderComponent } from './header-component/header/header.component';
 import { CaughtPokemonComponent } from './caught-pokemon-component/caught-pokemon/caught-pokemon.component';
 import { AllPokemonComponent } from './all-pokemon-component/all-pokemon/all-pokemon.component';
+import { LoadingComponent } from './loading-component/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { AllPokemonComponent } from './all-pokemon-component/all-pokemon/all-pok
     HeaderComponent,
     CaughtPokemonComponent,
     AllPokemonComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,

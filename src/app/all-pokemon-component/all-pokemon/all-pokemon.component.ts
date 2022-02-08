@@ -29,7 +29,10 @@ export class AllPokemonComponent
         }
     }
 
-    
+    isCaught(pokename : string) : boolean
+    {
+      return this.user.isCaught(pokename);
+    }
     
     requestCallback(pokemons : Pokemon[])
     {
