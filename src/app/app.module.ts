@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from './navbar-component/navbar.component';
 import { HeaderComponent } from './header-component/header/header.component';
 import { CaughtPokemonComponent } from './caught-pokemon-component/caught-pokemon/caught-pokemon.component';
+import { AllPokemonComponent } from './all-pokemon-component/all-pokemon/all-pokemon.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { CaughtPokemonComponent } from './caught-pokemon-component/caught-pokemo
     NavbarComponent,
     HeaderComponent,
     CaughtPokemonComponent,
+    AllPokemonComponent,
   ],
   imports: [
     BrowserModule,

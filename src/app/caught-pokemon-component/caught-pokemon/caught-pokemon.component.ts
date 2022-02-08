@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { PokemonData } from 'src/app/models/pokemon.model';
-import { UserRequestService } from 'src/app/services/user-requests.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component
