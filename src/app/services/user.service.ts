@@ -29,6 +29,15 @@ export class UserService
     const storeUser = sessionStorage.getItem(USER_KEY) || JSON.stringify(defaultUser);
     this._user = JSON.parse(storeUser);
   }
+  //The user has added a pokemon from the catalogue
+  catchPokemon(pokemon : PokemonData)
+  {
+    //Add it to the list of pokemon, the rest is takken care of automatically
+    this._user.pokemon.push(pokemon);
+    //keep sessionstorage in sync
+    this.user = this._user;
+  }
+
   //If user is default, then not logged in
   isLoggedIn() : boolean
   {

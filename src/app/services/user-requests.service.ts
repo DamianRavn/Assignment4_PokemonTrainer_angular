@@ -46,7 +46,7 @@ export class HttpRequestService {
                         const newUser =
                         {
                             username,
-                            pokemon: [{name: "char", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png", deleted: false}, {name: "bulb", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png", deleted: false}, {name: "squirt", deleted: true}]
+                            pokemon: []
                         }
                         const headers = this.createHeaders();
                         return this.httpClient.post<User>(`${apiURL}/trainers`, newUser, {headers})

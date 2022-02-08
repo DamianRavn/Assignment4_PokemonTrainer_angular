@@ -1,13 +1,12 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { HttpClient } from  '@angular/common/http';
-import { Pokemon } from "../models/pokemon.model";
-import { PokemonsService } from "../services/pokemon-requests.service";
+import { Pokemon, PokemonData } from "../models/pokemon.model";
+import { PokemonRequestService } from "../services/pokemon-requests.service";
 import { HeaderComponent } from "../header-component/header/header.component";
+import { PokemonService } from "../services/pokemon.service";
+import { UserService } from "../services/user.service";
 
-let pictureVal = 1 // use string split on 6th '/' at  URL from the json file: https://pokeapi.co/api/v2/pokemon/1/"
-
-const URL = "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=30/results"
-const pictureUrl =`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pictureVal}.png`
+const pictureUrlBase =`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/` //id.png
 
 @Component({
     selector: 'app-pokemon-catalogue-page',
@@ -16,19 +15,47 @@ const pictureUrl =`https://raw.githubusercontent.com/PokeAPI/sprites/master/spri
 })
 
 
-export class PokemonCatalogueComponent implements OnInit {
+export class PokemonCatalogueComponent 
+{
 
     headerText = "Pokemon Catalogue";
-    get pokemons() : Pokemon[]{
-        return this.pokemonService.pokemons;
+    get pokemons() : PokemonData[]{
+        return this.pokemonService.pokemonList;
     }
     //DI
-    constructor(private pokemonService: PokemonsService) {}
+    constructor(private pokemonResquestService: PokemonRequestService, private pokemonService : PokemonService, private user : UserService) 
+    {
+        if (pokemonService.pokemonList.length == 0) 
+        {
+            pokemonResquestService.findAllPokemons(this.requestCallback.bind(this));
+            
+        }
+    }
 
-    ngOnInit(): void {
-        this.pokemonService.findAllPokemons();
-        console.log( this.pokemons[2])
-        
+    
+    
+    requestCallback(pokemons : Pokemon[])
+    {
+        const pokemonDataList : PokemonData[] = []
+        for (let i = 0; i < pokemons.length; i++) 
+        {
+            const pokemon = pokemons[i];
+            const imageUrl = pictureUrlBase + (i+1) + ".png";
+            let pokemonData : PokemonData = {name:pokemon.name, image: imageUrl, deleted: false}
+            pokemonDataList.push(pokemonData);
+        }
+
+        this.pokemonService.pokemonList = pokemonDataList;
+    }
+
+    getAllPokemons() : PokemonData[]
+    {
+        return this.pokemonService.pokemonList;
+    }
+
+    catchPokemon(pokemon : PokemonData)
+    {
+        this.user.catchPokemon(pokemon);
     }
     
 }
