@@ -28,6 +28,7 @@ export class LogInComponent
     //When the httprequestservice is done logging in, this is called as a callback
     loggedIn = (user : User)=>
     {
+        this.userService.user = user;
         this.router.navigateByUrl('/pokemon');
     }
 }
