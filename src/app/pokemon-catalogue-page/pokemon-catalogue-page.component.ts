@@ -57,5 +57,11 @@ export class PokemonCatalogueComponent
     {
         this.user.catchPokemon(pokemon);
     }
+
+    isLoading()
+    {
+        return this.pokemonResquestService.loading;
+    }
     
 }
+

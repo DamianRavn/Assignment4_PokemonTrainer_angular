@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PokemonData } from 'src/app/models/pokemon.model';
-import { HttpRequestService } from 'src/app/services/user-requests.service';
+import { UserRequestService } from 'src/app/services/user-requests.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component
@@ -12,7 +12,7 @@ import { UserService } from 'src/app/services/user.service';
 export class CaughtPokemonComponent
 {
 
-  constructor(private userService : UserService, private httpRequest : HttpRequestService) { }
+  constructor(private userService : UserService) { }
 
   currentPokemon() : PokemonData[]
   {
@@ -21,7 +21,6 @@ export class CaughtPokemonComponent
   deletePokemon(pokename : string)
   {
     this.userService.deletePokemon(pokename);
-    this.httpRequest.patchPokemon(this.userService.user.id, this.userService.user.pokemon);
   }
 
 }

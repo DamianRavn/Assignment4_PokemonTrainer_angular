@@ -2,14 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { PokemonData, User } from "../models/pokemon.model"
 import { map, mergeMap } from "rxjs/operators";
-import { Observable, of } from 'rxjs';
+import { of } from 'rxjs';
+import { UserService } from './user.service';
 
 const apiURL =  'https://experis-assignment-api.herokuapp.com'
 const apiKey =  'floppy-vitamin-cloud';
 
 @Injectable({providedIn: 'root'})
-export class HttpRequestService {
-    constructor(private httpClient: HttpClient) { }
+export class UserRequestService {
+    constructor(private httpClient: HttpClient, private userService : UserService) { }
 
     //Indicates whether the service is currently getting data from server
     private _loading : boolean = false;
@@ -63,6 +64,7 @@ export class HttpRequestService {
                 this._loading = false;
                 //The callback takes care of the rest
                 callback(response);
+                this.userService.user = response;
             },
             error: (error : HttpErrorResponse)=>
             {
@@ -76,13 +78,13 @@ export class HttpRequestService {
     {
         this._loading = true;
         const headers = this.createHeaders();
-        this.httpClient.patch(`${apiURL}/trainers/${userId}`,{ pokemon:newList}, {headers})
+        this.httpClient.patch<User>(`${apiURL}/trainers/${userId}`,{ pokemon:newList}, {headers})
         .subscribe
         ({
-            next: (response)=>
+            next: (response : User)=>
             {
                 this._loading = false;
-                console.log("response: ", response)
+                this.userService.user = response;
             },
             error: (error : HttpErrorResponse)=>
             {
