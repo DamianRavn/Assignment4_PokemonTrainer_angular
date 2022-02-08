@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { map } from "rxjs";
 import { Pokemon, PokemonResponse } from "../models/pokemon.model";
 
-const URL = "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=30/results"
+const BaseURL = "https://pokeapi.co/api/v2/pokemon/";
 
 
 @Injectable({
@@ -20,21 +20,23 @@ export class PokemonRequestService{
 
     constructor(private http: HttpClient) { }
 
-    findAllPokemons(callback : Function): void{
+    loadNextPage(currentPage : number, offsetAmount : number, callback : Function) : void
+    {
         this._loading = true;
-        this.http.get<PokemonResponse>(URL)
+        this.http.get<PokemonResponse>(`${BaseURL}?limit=${offsetAmount}&offset=${currentPage * offsetAmount}/results`)
         .pipe(
-            map((response: PokemonResponse)=>{
+            map((response: PokemonResponse)=>
+            {
                 return response.results
             })
         )
-        .subscribe({
+        .subscribe
+        ({
             next:(pokemons: Pokemon[]) => 
             {
                 callback(pokemons)
                 this._loading = false;
             }
         });
-
     }
 }
