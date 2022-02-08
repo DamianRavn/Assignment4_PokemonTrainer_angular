@@ -3,14 +3,13 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { PokemonData, User } from "../models/pokemon.model"
 import { map, mergeMap } from "rxjs/operators";
 import { of } from 'rxjs';
-import { UserService } from './user.service';
 
 const apiURL =  'https://experis-assignment-api.herokuapp.com'
 const apiKey =  'floppy-vitamin-cloud';
 
 @Injectable({providedIn: 'root'})
 export class UserRequestService {
-    constructor(private httpClient: HttpClient, private userService : UserService) { }
+    constructor(private httpClient: HttpClient) { }
 
     //Indicates whether the service is currently getting data from server
     private _loading : boolean = false;
@@ -64,7 +63,6 @@ export class UserRequestService {
                 this._loading = false;
                 //The callback takes care of the rest
                 callback(response);
-                this.userService.user = response;
             },
             error: (error : HttpErrorResponse)=>
             {
@@ -74,7 +72,7 @@ export class UserRequestService {
     }
 
     //A pokemon has been deleted, update the api
-    patchPokemon(userId : number, newList : PokemonData[])
+    patchPokemon(userId : number, newList : PokemonData[], callback : Function)
     {
         this._loading = true;
         const headers = this.createHeaders();
@@ -84,7 +82,7 @@ export class UserRequestService {
             next: (response : User)=>
             {
                 this._loading = false;
-                this.userService.user = response;
+                callback(response);
             },
             error: (error : HttpErrorResponse)=>
             {

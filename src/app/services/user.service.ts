@@ -35,7 +35,7 @@ export class UserService
   {
     //make a new list with the pokemon added and send it to request. The callback will take care of the rest
     const newList = [...this.user.pokemon, pokemon];
-    this.userRequest.patchPokemon(this.user.id, newList);
+    this.userRequest.patchPokemon(this.user.id, newList, this.setUser);
   }
 
   //If user is default, then not logged in
@@ -62,6 +62,12 @@ export class UserService
         }
     });
 
-    this.userRequest.patchPokemon(this.user.id, this.user.pokemon);
+    this.userRequest.patchPokemon(this.user.id, this.user.pokemon, this.setUser);
+  }
+
+  //Sets the user. Good for updating the sessionstorage
+  setUser(user : User)
+  {
+    this.user = user;
   }
 }
